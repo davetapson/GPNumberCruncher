@@ -9,7 +9,7 @@ namespace GPNumberCruncher_Tests
     [TestClass]
     public class FileHandler_Tests
     {
-        string testFileName = "TestFile.txt";
+        readonly string testFileName = "TestFile.txt";
 
         [TestMethod]
         public void CheckFileExists_ExistingFile_Test()
@@ -86,9 +86,9 @@ namespace GPNumberCruncher_Tests
         {
             FileStream fileStream = File.OpenWrite(testFileName);
 
-            Byte[] info = new UTF8Encoding(true).GetBytes(expected.ToString());
+            Byte[] bytes = new UTF8Encoding(true).GetBytes(expected.ToString());
 
-            fileStream.Write(info, 0, info.Length);
+            fileStream.Write(bytes, 0, bytes.Length);
             fileStream.Close();
         }
     }

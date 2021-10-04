@@ -12,34 +12,32 @@ namespace GPNumberCruncher
                 SaveNumber(file, 0);
         }
 
-        public static int GetSavedNumber(string filePath)
+        public static int GetSavedNumber(string file)
         {
             try
             {
-                StreamReader file = new(filePath);
+                StreamReader streamReader = new(file);
 
-                var line = file.ReadLine();
+                var line = streamReader.ReadLine();
 
-                file.Close();
+                streamReader.Close();
 
                 return Convert.ToInt32(line);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"GetSavedNumber - Error encountered: {ex.Message}");
+                Console.WriteLine($"GetSavedNumber from {file} - Error encountered: {ex.Message}");
                 throw;
             }
         }
 
         public static void SaveNumber(string filePath, int number)
         {
-            string path = filePath;
+            using FileStream fileStream = File.OpenWrite(filePath);
 
-            using FileStream fileStream = File.OpenWrite(path);
+            Byte[] bytes = new UTF8Encoding(true).GetBytes(number.ToString());
 
-            Byte[] info = new UTF8Encoding(true).GetBytes(number.ToString());
-
-            fileStream.Write(info, 0, info.Length);
+            fileStream.Write(bytes, 0, bytes.Length);
 
             fileStream.Close();
         }
