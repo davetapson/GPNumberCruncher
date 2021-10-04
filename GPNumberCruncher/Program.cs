@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace GPNumberCruncher
+﻿namespace GPNumberCruncher
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             const string fileName = @"LastNumber.txt";
 
