@@ -9,18 +9,24 @@
             FileHandler.CheckFileExists(fileName);
 
             int savedNumber = FileHandler.GetSavedNumber(fileName);
-            int userNumber = NumberHandler.GetNumberFromUser();
+            int userNumber = DisplayHandler.GetNumberFromUser();
 
             int result = NumberHandler.CrunchNumbers(savedNumber, userNumber);
 
-            FileHandler.SaveNumber(fileName, result);
+            DisplayHandler.DisplayNumber(result);
 
             // or, but this is a bit cryptic...
-            //FileHandler.SaveNumber(
-            //    fileName, 
+            //DisplayHandler.DisplayNumber(
             //    NumberHandler.CrunchNumbers(
             //        FileHandler.GetSavedNumber(fileName), 
-            //        NumberHandler.GetNumberFromUser()));
+            //        DisplayHandler.GetNumberFromUser()
+            //    )
+            //);
+
+            // spec says save this after display - there is an argument it would be better to save before display
+            // because if the user closes the console by hitting the X instead of hitting another key, the value will not be saved.
+            // we could catch the close event of the console to counter this, but that would be daft.
+            FileHandler.SaveNumber(fileName, result);
         }
     }
 }
