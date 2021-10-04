@@ -22,5 +22,12 @@ namespace GPNumberCruncher
             // or 
             //return total > 152 ? total - 152 : total;
         }
+
+        public static int GetNumberFromUser()
+        {
+            Console.WriteLine("Type in a number and then press Enter:");
+            int userNumber = Convert.ToInt32(Console.ReadLine());
+            return userNumber;
+        }
     }
 }

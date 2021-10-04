@@ -9,13 +9,6 @@ namespace GPNumberCruncher
 {
     public static class FileHandler
     {
-        public static int GetNumberFromUser()
-        {
-            Console.WriteLine("Enter number:");
-            int userNumber = Convert.ToInt32(Console.ReadLine());
-            return userNumber;
-        }
-
         public static void CheckFileExists(string file)
         {
             if (!File.Exists(file))
@@ -50,6 +43,8 @@ namespace GPNumberCruncher
             Byte[] info = new UTF8Encoding(true).GetBytes(number.ToString());
 
             fileStream.Write(info, 0, info.Length);
+
+            fileStream.Close();
         }
     }
 }
