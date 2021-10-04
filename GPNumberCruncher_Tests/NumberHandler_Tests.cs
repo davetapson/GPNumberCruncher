@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using GPNumberCruncher;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,24 +15,30 @@ namespace GPNumberCruncher_Tests
         public void CrunchNumbers_Below_152_Test()
         {
             // assemble
-            int expected = 1;
+            int savedNumber = 1;
+            int userNumber = 2;
+            int expected = savedNumber + userNumber;
 
             // act
+            int actual = NumberHandler.CrunchNumbers(savedNumber, userNumber);
 
             // assert
-            Assert.AreEqual(expected, 2);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void CrunchNumbers_Above_152_Test()
         {
             // assemble
-            int expected = 1;
+            int savedNumber = 152;
+            int userNumber = 2;
+            int expected = savedNumber + userNumber - 152;
 
             // act
+            int actual = NumberHandler.CrunchNumbers(savedNumber, userNumber);
 
             // assert
-            Assert.AreEqual(expected, 2);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
